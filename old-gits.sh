@@ -17,7 +17,7 @@ find $CURRENT_PATH -name ".git" -type d -prune | while read -r gitdir; do
     #2 do the parse magic
     LOCAL=$(git rev-parse @ 2>/dev/null) #where I am
     REMOTE=$(git rev-parse @{u} 2>/dev/null) #where remote is
-    BASE=$(git rev-parse @ @{u} 2>/dev/null) #where we agree
+    BASE=$(git merge-base @ @{u} 2>/dev/null) #where we agree
 
     # 3. Compare them
     if [ -z "$REMOTE" ]; then
@@ -29,7 +29,7 @@ find $CURRENT_PATH -name ".git" -type d -prune | while read -r gitdir; do
         echo "ihhhh carai ta c atraso de $BEHIND_COUNT bora arruma isso"
     elif [ "$REMOTE" = "$BASE" ]; then
         AHEAD_COUNT=$(git rev-list --count @{u}..HEAD)
-        echo "aiii tu eh todo pra frentex neh? ta: $AHEAD_COUNT na frente"
+        echo "aiii tu eh todo pra frentex neh? $AHEAD_COUNT commit na frente"
     else
         echo "vixe truta deu treta legal aqui, divergiu mto"
     fi
