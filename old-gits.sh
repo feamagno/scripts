@@ -2,7 +2,8 @@
 
 CURRENT_PATH="$PWD"
 
-# -type d tells find to only return directories
+# -type d tels find to only return directories
+# prune stops looking when finds a .git
 find $CURRENT_PATH -name ".git" -type d -prune | while read -r gitdir; do
     
     repo_dir=$(dirname "$gitdir")
@@ -33,5 +34,4 @@ find $CURRENT_PATH -name ".git" -type d -prune | while read -r gitdir; do
     else
         echo "vixe truta deu treta legal aqui, divergiu mto"
     fi
-
 done
