@@ -16,9 +16,9 @@ find $CURRENT_PATH -name ".git" -type d -prune | while read -r gitdir; do
     git fetch --quiet
 
     #2 do the parse magic
-    LOCAL=$(git rev-parse @ 2>/dev/null) #where I am
+    LOCAL=$(git rev-parse  @ 2>/dev/null) #where I am
     REMOTE=$(git rev-parse @{u} 2>/dev/null) #where remote is
-    BASE=$(git merge-base @ @{u} 2>/dev/null) #where we agree
+    BASE=$(git merge-base  @ @{u} 2>/dev/null) #where we agree
 
     # 3. Compare them
     if [ -z "$REMOTE" ]; then
